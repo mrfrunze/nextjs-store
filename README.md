@@ -1633,6 +1633,7 @@ For example, NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY can be used in both server-side a
 
 On the other hand, CLERK_SECRET_KEY is a server-side environment variable. It's not exposed to the browser, making it suitable for storing sensitive data like API secrets.
 
+
 layout.tsx
 
 ```tsx
