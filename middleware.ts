@@ -8,8 +8,9 @@ export default clerkMiddleware((auth, req) => {
       auth().protect();  // Защита маршрутов, требующих авторизации
     }
   } catch (error) {
+    const err = error as Error; // Приведение к типу Error
     // Обработка ошибок токенов
-    if (error.message.includes('token-not-active-yet')) {
+    if (err.message.includes('token-not-active-yet')) {
       console.error("JWT token is not yet valid. Possible clock skew issue.");
       // Дополнительная логика, если необходимо (например, повторная проверка через некоторое время)
       // Варианты: ждать или перенаправить пользователя на страницу с уведомлением
