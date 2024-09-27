@@ -8,7 +8,7 @@ import PriceInput from '@/components/form/PriceInput';
 import ImageInput from '@/components/form/ImageInput';
 import TextAreaInput from '@/components/form/TextAreaInput';
 import CheckBoxInput from '@/components/form/CheckBoxInput';
-import Buttons from '@/components/form/Buttons';
+import {SubmitButton} from '@/components/form/Buttons';
 
 
 
@@ -46,7 +46,7 @@ const CreateProductPage = () => {
           <div className='mt-6'>
             <CheckBoxInput name='featured' label='featured' />
           </div>
-          <Buttons text='Create Product' className='mt-8'/>
+          <SubmitButton text='Create Product' className='mt-8'/>
         </FormContainer>
       </div>
     </section>

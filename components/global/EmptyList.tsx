@@ -1,7 +1,5 @@
 import { cn } from '@/lib/utils';
 
-type Props = {}
-
 const EmptyList = ({
   heading = 'No items found.',
   className,
