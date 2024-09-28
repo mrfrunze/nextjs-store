@@ -14,11 +14,12 @@ import SignOutLink from "./SignOutLink";
 import UserIcon from "./UserIcon";
 import { auth } from "@clerk/nextjs/server";
 
-const {userId} = auth()
 
-const isAdmin = userId === process.env.ADMIN_USER_ID
 
 function LinksDropdown() {
+  const {userId} = auth()
+  const isAdmin = userId === process.env.ADMIN_USER_ID
+  
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
