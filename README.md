@@ -2959,6 +2959,7 @@ export const deleteImage = (url: string) => {
   return supabase.storage.from(bucket).remove([imageName]);
 };
 ```
+actionts
 
 ```ts
 export const deleteProductAction = async (prevState: { productId: string }) => {
@@ -3021,6 +3022,7 @@ import PriceInput from '@/components/form/PriceInput';
 import TextAreaInput from '@/components/form/TextAreaInput';
 import { SubmitButton } from '@/components/form/Buttons';
 import CheckboxInput from '@/components/form/CheckboxInput';
+
 async function EditProductPage({ params }: { params: { id: string } }) {
   const { id } = params;
   const product = await fetchAdminProductDetails(id);

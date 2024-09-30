@@ -4,7 +4,7 @@ import db from '@/utils/db';
 import { redirect } from 'next/navigation';
 import { currentUser } from '@clerk/nextjs/server';
 import { imageSchema, productSchema, validateWithZodSchema } from './schemas';
-import { uploadImage } from './supabase';
+import { deleteImage, uploadImage } from './supabase';
 import { revalidatePath } from 'next/cache';
 
 
@@ -106,15 +106,69 @@ export const deleteProductAction = async (prevState: { productId: string }) => {
   await getAdminUser();
 
   try {
-    await db.product.delete({
+    const product = await db.product.delete({
       where: {
         id: productId,
       },
     });
+    await deleteImage(product.image)
     revalidatePath('/admin/products');
     return { message: 'product removed' };
   } catch (error) {
     return renderError(error);
   }
-
 }
+
+export const fetchAdminProductDetails = async (productId: string) => {
+  await getAdminUser();
+  const product = await db.product.findUnique({
+    where: {
+      id: productId,
+    },
+  });
+  if (!product) redirect('/admin/products');
+  return product;
+};
+
+export const updateProductAction = async (
+  prevState: any, // Предыдущее состояние продукта
+  formData: FormData // Новые данные формы для обновления продукта
+) => {
+  await getAdminUser(); // Проверяем, что текущий пользователь — администратор
+  try {
+    // Извлекаем ID продукта из данных формы
+    const productId = formData.get('id') as string;
+
+    // Преобразуем FormData в объект для дальнейшей обработки
+    const rawData = Object.fromEntries(formData);
+
+    // Валидируем поля формы с помощью схемы Zod
+    const validatedFields = validateWithZodSchema(productSchema, rawData);
+
+    // Обновляем продукт в базе данных
+    await db.product.update({
+      where: {
+        id: productId,
+      },
+      data: {
+        ...validatedFields, // Используем валидированные данные для обновления
+      },
+    });
+
+     // Обновляем кэш страницы редактирования
+     revalidatePath(`/admin/products/${productId}/edit`);
+
+     // Возвращаем сообщение об успешном обновлении
+     return { message: 'Product updated successfully' };
+  } catch (error) {
+     // Обрабатываем ошибки и возвращаем ошибку
+     return renderError(error);
+  }
+};
+
+export const updateProductImageAction = async (
+  prevState: any,
+  formData: FormData
+) => {
+  return { message: 'Product Image updated successfully' };
+};
