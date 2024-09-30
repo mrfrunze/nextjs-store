@@ -4,7 +4,7 @@ import FormInput from '@/components/form/FormInput';
 import PriceInput from '@/components/form/PriceInput';
 import TextAreaInput from '@/components/form/TextAreaInput';
 import { SubmitButton } from '@/components/form/Buttons';
-import CheckboxInput from '@/components/form/CheckboxInput';
+import CheckboxInput from '@/components/form/CheckBoxInput';
 
 async function EditProductPage({ params }: { params: { id: string } }) {
   const { id } = params;
