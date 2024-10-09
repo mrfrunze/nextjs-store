@@ -3563,7 +3563,8 @@ return (
 
 ```prisma
 model Product {
-    reviews Review []
+  ....
+  reviews Review []
 }
 model Review {
   id        String   @id @default(uuid())
@@ -3680,13 +3681,8 @@ function SubmitReview({ productId }: { productId: string }) {
   const { user } = useUser();
   return (
     <div>
-      <Button
-        size='lg'
-        className='capitalize'
-        onClick={() => setIsReviewFormVisible((prev) => !prev)}
-      >
-        leave review
-      </Button>
+      const [isReviewFormVisible, setIsReviewFormVisible] = useState(false);
+  const { user } = useUser();
       {isReviewFormVisible && (
         <Card className='p-8 mt-8'>
           <FormContainer action={createReviewAction}>
