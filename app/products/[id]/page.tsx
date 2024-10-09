@@ -1,10 +1,11 @@
-import BreadCrumbs from "../../../components/single-product/BreadCrumbs"
-import { fetchSingleProduct } from "../../../utils/actions"
+import BreadCrumbs from "@/components/single-product/BreadCrumbs"
+import { fetchSingleProduct } from "@/utils/actions"
 import Image from 'next/image';
-import { formatCurrency } from "../../../utils/format";
-import FavoriteToggleButton from "../../../components/products/FavoriteToggleButton";
-import AddToCart from "../../../components/single-product/AddToCart";
-import ProductRating from "../../../components/single-product/ProductRating";
+import { formatCurrency } from "@/utils/format";
+import FavoriteToggleButton from "@/components/products/FavoriteToggleButton";
+import AddToCart from "@/components/single-product/AddToCart";
+import ProductRating from "@/components/single-product/ProductRating";
+import ShareButton from "@/components/single-product/ShareButton";
 
 const SingleProductPage = async ({ 
         params
@@ -36,7 +37,11 @@ const SingleProductPage = async ({
             <div className="">
                 <div className="flex gap-x-8 items-center">
                     <h1 className='capitalize text-3xl font-bold'>{name}</h1>
-                    <FavoriteToggleButton productId={product.id} /> 
+                    <div className="flex items-center gap-x-2">
+                        <FavoriteToggleButton productId={product.id} /> 
+                        <ShareButton name={product.name} productId={params.id} />
+                    </div>
+                 
                 </div>
                 <ProductRating productId={params.id} />
                 <h4 className='text-xl mt-2'>{company}</h4>
