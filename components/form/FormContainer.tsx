@@ -9,8 +9,6 @@ const initialState = {
     message: '',
   };
 
-
-
 const FormContainer = ({
     action,
     children,

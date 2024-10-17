@@ -2,11 +2,12 @@ import React from 'react'
 import { Button } from '../ui/button'
 import Link from 'next/link'
 import { LuShoppingCart } from "react-icons/lu";
+import { fetchCartItems } from '@/utils/actions';
 
 type Props = {}
 
 async function CartButton({}: Props) {
-  const numItemsInCart = 8
+  const numItemsInCart = await fetchCartItems();
 
   return (
     <Button 
