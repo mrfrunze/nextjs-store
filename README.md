@@ -4514,6 +4514,7 @@ import SectionTitle from '@/components/global/SectionTitle';
 import { fetchOrCreateCart, updateCart } from '@/utils/actions';
 import { auth } from '@clerk/nextjs/server';
 import { redirect } from 'next/navigation';
+
 async function CartPage() {
   const { userId } = auth();
   if (!userId) redirect('/');
