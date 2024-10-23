@@ -4989,6 +4989,7 @@ export const createOrderAction = async (prevState: any, formData: FormData) => {
   }
   redirect('/orders');
 };
+
 export const fetchUserOrders = async () => {
   const user = await getAuthUser();
   const orders = await db.order.findMany({
@@ -5033,6 +5034,8 @@ export const formatDate = (date: Date) => {
 ```
 
 - create app/orders/loading.tsx
+
+Этот компонент используется для отображения состояния загрузки на странице заказов. Он показывает таблицу-загрузчик до тех пор, пока данные не будут получены с сервера.
 
 ```tsx
 'use client';
