@@ -1,4 +1,10 @@
+import { NextResponse } from 'next/server';
 import prisma from '../../../utils/db';
+
+
+export async function HEAD() {
+  return new NextResponse("Pong", { status: 200 });
+}
 
 export async function GET(req) {
   try {
